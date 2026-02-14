@@ -9,6 +9,38 @@
     <link rel="icon" href="assets/icon.jpg">
   </head>
   <body>
+    <script>
+      // Smooth scroll animations on page load
+      window.addEventListener('load', () => {
+        const elements = document.querySelectorAll('[data-animate]');
+        elements.forEach((el, index) => {
+          setTimeout(() => {
+            el.style.animation = `fadeInUp 0.6s ease-out forwards`;
+          }, index * 100);
+        });
+      });
+
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('[data-scroll-animate]').forEach(el => {
+          observer.observe(el);
+        });
+      });
+    </script>
     
     <header class="header">
       <img src="assets/icon.jpg" alt="icon" style="border-radius: 10px ; width: 50px; height: auto;">
@@ -41,81 +73,75 @@
     <a href=""><img src="assets/pexels-davidmcbee-1486785.jpg" alt="" class="about-image--img" /></a>
   </div>
 </section>
-<div class="home" >
+<div class="home" data-animate>
   <div class="title_button">
-    <h2>Explore More option</h2>
-    <button><a href="#property" style="color: rgb(255, 255, 255); list-style: none;">see all &rarr;</a></button>
+    <h2>Explore Our Collection</h2>
+    <button><a href="#property" style="color: inherit; list-style: none; text-decoration: none;">see all &rarr;</a></button>
   </div>
   <section class="home-all">
   <div class="home_bx">
-    <div class="card">
-      
-      <img src="assets/two self contained.jpg" alt="">
-      <div class="content"> <i class="bi-bi-b"></i>
+    <div class="card" data-scroll-animate>
+      <img src="assets/two self contained.jpg" alt="Bedsitter apartment">
+      <div class="content">
         <div class="cont">
-        <h1>bedsitter</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. </p>
-      </div>
+          <h1>Bedsitter</h1>
+          <p>Cozy and comfortable space with kitchen area</p>
+        </div>
       </div>
     </div>
   </div>
   <div class="home_bx">
-    <div class="card">
-      
-      <img src="assets/two bedroom.jpg" alt="">
-      <div class="content"> <i class="bi bi-b"></i>
+    <div class="card" data-scroll-animate>
+      <img src="assets/two bedroom.jpg" alt="Two bedroom apartment">
+      <div class="content">
         <div class="cont">
-        <h1>two bedroom</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. </p>
-      </div>
+          <h1>Two Bedroom</h1>
+          <p>Spacious rooms ideal for small families</p>
+        </div>
       </div>
     </div>
   </div>
   <div class="home_bx">
-    <div class="card">
-      
-      <img src="assets/studio.jpg" alt="">
-      <div class="content"> <i class="bi bi-b"></i>
+    <div class="card" data-scroll-animate>
+      <img src="assets/studio.jpg" alt="Studio apartment">
+      <div class="content">
         <div class="cont">
-        <h1 style="color: white;">studio</h1>
-        <p style="color: white;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. </p>
-      </div>
+          <h1>Studio</h1>
+          <p>Modern open layout living space</p>
+        </div>
       </div>
     </div>
   </div>
   <div class="home_bx">
-    <div class="card">
-      
-      <img src="assets/single.jpg" alt="">
-      <div class="content"> <i class="bi bi-b"></i>
+    <div class="card" data-scroll-animate>
+      <img src="assets/single.jpg" alt="Single room">
+      <div class="content">
         <div class="cont">
-        <h1>single</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. </p>
-      </div>
+          <h1>Single Room</h1>
+          <p>Budget-friendly cozy accommodation</p>
+        </div>
       </div>
     </div>
   </div>
   <div class="home_bx">
-    <div class="card">
-      
-      <img src="assets/one bedroom.jpg" alt="">
-      <div class="content"> <i class="bi bi-b"></i>
+    <div class="card" data-scroll-animate>
+      <img src="assets/one bedroom.jpg" alt="One bedroom apartment">
+      <div class="content">
         <div class="cont">
-        <h1>one bedroom</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. </p>
-      </div>
+          <h1>One Bedroom</h1>
+          <p>Perfect balance of space and comfort</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </section>
 
-<section class="bar">
- <h1>PROPERTIES AVAILABLE</h1>
+<section class="bar" data-animate>
+ <h1>Properties Available</h1>
 </section>
 
-<section><div class="property-items-container">
-  <div class="property-item">
+<section class="property" data-animate><div class="property-items-container">
+  <div class="property-item" data-scroll-animate>
     <div class="property-item-image">
       <img src="./assets/single.jpg" alt="single" class="property-item-image-img" />
     </div>
@@ -126,7 +152,7 @@
     <a href="" class="property-item-cta">click for more &rarr;</a>
   </div>
 
-  <div class="property-item">
+  <div class="property-item" data-scroll-animate>
     <div class="property-item-image">
       <img
         src="./assets/pexels-jessica-bryant-592135-1370704.jpg"
@@ -134,14 +160,14 @@
         class="property-item-image-img"
       />
     </div>
-    <h2 class="property-item-title">bedsitter</h2>
+    <h2 class="property-item-title">Bedsitter</h2>
     <p class="property-item-description">
-      cozy and comfortable bedsitters with a kitchen area and sink suitable for individuals and couples @ Kshs.5500 per month.
+      Cozy and comfortable bedsitters with a kitchen area and sink suitable for individuals and couples @ Kshs.5500 per month.
     </p>
     <a href="" class="property-item-cta">click for more &rarr;</a>
   </div>
 
-  <div class="property-item">
+  <div class="property-item" data-scroll-animate>
     <div class="property-item-image">
       <img
         src="./assets/studio.jpg"
@@ -156,7 +182,7 @@
     <a href="" class="property-item-cta">click for more &rarr;</a>
   </div>
 
-  <div class="property-item">
+  <div class="property-item" data-scroll-animate>
     <div class="property-item-image">
       <img
         src="./assets/pexels-davidmcbee-1486785.jpg"
@@ -171,7 +197,7 @@
     <a href="" class="property-item-cta">click for more &rarr;</a>
   </div>
 
-  <div class="property-item">
+  <div class="property-item" data-scroll-animate>
     <div class="property-item-image">
       <img
         src="./assets/two bedroom.jpg"
@@ -186,7 +212,7 @@
     <a href="" class="property-item-cta">click for more &rarr;</a>
   </div>
 
-  <div class="property-item">
+  <div class="property-item" data-scroll-animate>
     <div class="property-item-image">
       <img
         src="./assets/one bedroom.jpg"
@@ -196,12 +222,12 @@
     </div>
     <h2 class="property-item-title">One Bedroom Self-Contained</h2>
     <p class="property-item-description">
-      Apartments with a separate bedroom and private amenities, including a kitchen and bathroom, offering utmost privacy and convenience @ Kshs. 15000 per month.
+      Apartments with a separate bedroom and private amenities, including a kitchen and bathroom, offering utmost privacy and convenience @ Kshs.15000 per month.
     </p>
     <a href="" class="property-item-cta">click for more &rarr;</a>
   </div>
 
-  <div class="property-item">
+  <div class="property-item" data-scroll-animate>
     <div class="property-item-image">
       <img
         src="./assets/two self contained.jpg"
@@ -213,45 +239,45 @@
     <p class="property-item-description">
       Apartments with two bedrooms and private amenities, providing ample space and comfort for families or larger households @ Kshs.20000 per month.
     </p>
-    <a href="" class="property-item-cta">clickfor more &rarr;</a>
+    <a href="" class="property-item-cta">click for more &rarr;</a>
   </div>
 </div>
 </section>
-<section class="contact">
+<section class="contact" data-scroll-animate>
   <div>
   <div>
-  <h1>contact us</h1>
-  <p>our manager will contact you shortly</p>
+  <h1>Get In Touch</h1>
+  <p>Our manager will contact you shortly</p>
   </div>
   <form action="" class="form-row">  
   <div>
-    <label for="name">name</label>
-    <input type="text" class="name" placeholder="your full name">
+    <label for="name">Full Name</label>
+    <input type="text" class="name" placeholder="Enter your full name" required>
   </div>
   <div>
-    <label for="email">email</label>
-    <input type="email" class="" placeholder="your email">
+    <label for="email">Email Address</label>
+    <input type="email" class="" placeholder="your@email.com" required>
   </div>
   <div>
-    <label for="number">phone number</label>
-    <input type="number" placeholder="your phone number">
+    <label for="number">Phone Number</label>
+    <input type="number" placeholder="+254 (Your phone number)" required>
+  </div>
+  <div>
+    <label for="message">Message</label>
+    <input type="text" placeholder="Tell us about your requirements...">
+  </div>
+  <div>
+    <button type="submit">Send Message</button>
   </div>
 </form>
-  <div>
-    <label for="message">message</label>
-    <input type="text">
-  </div>
-  <div>
-    <button type="submit"> send form</button>
-  </div>
   </div>
 
 
 </section>
 
 <footer class="footer">
-  <p class="footer-text">contact us @urhaven@apartments.com and by dialing +254718764327 <br>
-    &copy; All rights reserved.</p>
+  <p class="footer-text">Contact Us: urhaven@apartments.com | +254 718 764 327 <br>
+    &copy; 2024 Urban Haven Apartments. All rights reserved. | Murang'a, Kiharu</p>
 </footer>
     <!-- <div id="app"></div> -->
     <!-- <script type="module" src="/main.js"></script> -->
